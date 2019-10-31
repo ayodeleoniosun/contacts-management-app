@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Contact Management System | My Contacts</title>
+	<meta charset="utf-8" />
+    <link rel="shortcut icon" href="../public/images/logo.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<link rel="stylesheet" href="../public/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../public/bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../public/bower_components/simple-line-icons/css/simple-line-icons.css">
+	<link rel="stylesheet" href="../public/bower_components/weather-icons/css/weather-icons.min.css">
+	<link rel="stylesheet" href="../public/bower_components/themify-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="../public/bower_components/jquery.steps/demo/css/jquery.steps.css">
+	<link rel="stylesheet" href="../public/dist/css/main.css">
+	<link rel="stylesheet" href="../public/assets/js/horizontal-timeline/css/style.css">
+	<link href="../public/assets/js/bootstrap-submenu/css/bootstrap-submenu.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables/media/css/jquery.dataTables.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables-tabletools/css/dataTables.tableTools.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables-colvis/css/dataTables.colVis.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables-responsive/css/responsive.dataTables.scss" rel="stylesheet">
+	<link href="../public/bower_components/datatables-scroller/css/scroller.dataTables.scss" rel="stylesheet">
+	<link rel="stylesheet" href="../public/bower_components/summernote/dist/summernote.css">
+	<link rel="stylesheet" href="../public/assets/css/custom.css">
+	<script src="../public/assets/js/modernizr-custom.js"></script>
+	<script src="../public/js/jquery.min.js"></script>
+	<script src="../public/js/ajax.js"></script>
+  </head>
+  <body>
+	
+	<% include nav.ejs %>
+
+	<div class="ui-content-body">
+		
+		<div class="ui-container">
+	
+				<div class="col-md-12">
+					
+					<button data-toggle="modal" data-target="#addContactModal" class="btn btn-sm btn-info pull-right"><i class="fa fa-plus"></i> Add New Contact </button>
+					<br/>
+
+					<h3>All Contacts <span class="badge badge-info" style="font-size:20px"> <%= contacts.length %> </span></h3>
+					<br/>
+
+					<% if(contacts.length == 0) { %>
+						<div class="alert alert-danger"> No contact yet </div>
+					<% } else { %>
+						<div class="directory-info-row">
+							<div class="row">
+							
+								<% contacts.forEach(function (contact) { %>
+
+									<div id="updateContactModal<%= contact.id %>" class="modal fade" role="dialog" aria-labelledby="myModalLabel">
+										<div class="modal-dialog modal-md" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<h4 class="modal-title" id="myModalLabel">Update Contact</h4>
+												</div>
+												<div class="modal-body">
+													
+													<form class="sign-in-form" method="POST" action="#" id="update-contact-form<%= contact.id %>" onsubmit="return false">
+														
+														<input type="hidden" name="contact_id" value="<%= contact.id %>">
+
+														<div class="form-group">
+															<label> Name </label>
+															<input type='text' class="form-control" placeholder='Fullname' name='name' required="" value="<%= contact.name %>">
+														</div>
+										
+														<div class="form-group">
+															<label> Phone number </label>
+															<input type='text' class="form-control" placeholder='Phone number' name='phone' required="" value="<%= contact.phone %>">
+														</div>
+										
+														<div class="form-group">
+															<label> Email address (optional) </label>
+															<input type='email' class="form-control" placeholder='Email address' name='email' value="<%= contact.email %>">
+														</div>
+										
+														<div align="center">
+															<button type="button" class="btn btn-info btn-md" id="update-contact-btn<%= contact.id %>" onclick="return ajaxFormRequest('#update-contact-btn<%= contact.id %>','#update-contact-form<%= contact.id %>','/api/update-contact','POST','#update-contact-status<%= contact.id %>','Save changes','no')">Save changes</button>
+															
+															<br/>
+															<div id="update-contact-status<%= contact.id %>" class="text-danger"></div>
+														</div>
+													</form>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="job-listings-featured">
+											<div class="row">
+												<div class="col-lg-12 col-md-12 col-xs-12">
+													<div class="job-company-logo">
+														<img src="../public/images/logo.png" alt="" style='max-width:50px' class="img-responsive img-circle"/>
+													</div>
+													<div class="job-details">
+														<a href="#" style="font-size:18px"> <%= contact.name %></a>
+														<br/><p></p>
+														
+														<div class="tags">
+															<a href="tel:<%= contact.phone %>" style="font-size:13px"><i class="fa fa-phone"></i> <%= contact.phone %> </a> &nbsp; &nbsp;
+									
+															<a href="mailto:<%= contact.email %>" style="font-size:13px"><i class="fa fa-envelope"></i> <%= contact.email %></a> &nbsp; &nbsp;
+									
+														</div>
+													</div>
+												</div>
+											</div>
+										
+											<div class="directory-info-row" align="center">
+												<ul class="social-links">
+													<li><a href='#'  data-toggle="modal" data-target="#updateContactModal<%= contact.id %>" class='text-success'><i class="fa fa-pencil-square-o"></i> </a></li>
+													<li><a href='/api/delete-contact/<%= contact.id %>' class='text-success' onclick="return confirm('Delete contact?')"><i class="fa fa-trash"></i> </a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+										
+								<% }); %>
+
+							</div>
+						</div>
+					<% } %> 
+				</div>
+			</div>
+		</div>
+	
+
+	<div id="addContactModal" class="modal fade" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-md" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Add New Contact</h4>
+				</div>
+				<div class="modal-body">
+					
+					<form class="sign-in-form" method="POST" action="#" id="add-contact-form" onsubmit="return false">
+
+						<div class="form-group">
+							<label> Name </label>
+							<input type='text' class="form-control" placeholder='Fullname' name='name' required/>
+						</div>
+		
+						<div class="form-group">
+							<label> Phone number </label>
+							<input type='text' class="form-control" placeholder='Phone number' name='phone' required/>
+						</div>
+		
+						<div class="form-group">
+							<label> Email address (optional) </label>
+							<input type='email' class="form-control" placeholder='Email address' name='email'/>
+						</div>
+		
+						<div align="center">
+							<button type="button" class="btn btn-info btn-md" id="add-contact-btn" onclick="return ajaxFormRequest('#add-contact-btn','#add-contact-form','/api/add-contact','POST','#add-contact-status','Add','no')">Add</button>
+							
+							<br/>
+							<div id="add-contact-status" class="text-danger"></div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../public/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="../public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../public/bower_components/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
+	<script src="../public/bower_components/autosize/dist/autosize.min.js"></script>
+	<script src="../public/assets/js/bootstrap-submenu/js/bootstrap-submenu.js"></script>
+	<script src="../public/assets/js/bootstrap-hover-dropdown.js"></script>
+	<script src="../public/bower_components/summernote/dist/summernote.js"></script>
+	<script src="../public/assets/js/horizontal-timeline/js/jquery.mobile.custom.min.js"></script>
+	<script src="../public/assets/js/horizontal-timeline/js/main.js"></script>
+
+	<script src="../public/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="../public/bower_components/datatables-tabletools/js/dataTables.tableTools.js"></script>
+	<script src="../public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="../public/bower_components/datatables-colvis/js/dataTables.colVis.js"></script>
+	<script src="../public/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+	<script src="../public/bower_components/datatables-scroller/js/dataTables.scroller.js"></script>
+	<script src="../public/assets/js/init-datatables.js"></script>
+	<script src="../public/dist/js/main.js"></script>
+
+  </body>
+</html>

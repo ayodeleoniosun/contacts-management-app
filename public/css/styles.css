@@ -1,0 +1,22 @@
+.bold {
+    Color: 'red';
+    font-weight: bold;
+}
+
+.resize_image {
+    width:200px;
+}
+
+.clear {
+    clear:both
+}
+
+.search_box {
+    margin:0px 20px 10px 130px;
+    display:none;
+    padding:10px;
+}
+
+#search_all {
+    display:none
+}

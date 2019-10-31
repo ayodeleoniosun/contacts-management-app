@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Contact Management System | Sign Up</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../public/images/logo.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<link rel="stylesheet" href="../public/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../public/bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../public/bower_components/simple-line-icons/css/simple-line-icons.css">
+	<link rel="stylesheet" href="../public/bower_components/weather-icons/css/weather-icons.min.css">
+	<link rel="stylesheet" href="../public/bower_components/themify-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="../public/bower_components/jquery.steps/demo/css/jquery.steps.css">
+	<link rel="stylesheet" href="../public/dist/css/main.css">
+	<link rel="stylesheet" href="../public/assets/js/horizontal-timeline/css/style.css">
+	<link href="../public/assets/js/bootstrap-submenu/css/bootstrap-submenu.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables/media/css/jquery.dataTables.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables-tabletools/css/dataTables.tableTools.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables-colvis/css/dataTables.colVis.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables-responsive/css/responsive.dataTables.scss" rel="stylesheet">
+	<link href="../public/bower_components/datatables-scroller/css/scroller.dataTables.scss" rel="stylesheet">
+	<link rel="stylesheet" href="../public/bower_components/summernote/dist/summernote.css">
+	<link rel="stylesheet" href="../public/assets/css/custom.css">
+	<script src="../public/assets/js/modernizr-custom.js"></script>
+	<script src="../public/js/jquery.min.js"></script>
+	<script src="../public/js/ajax.js"></script>
+  </head>
+  <body>
+	
+	<div class="sign-in-wrapper">
+		<div class="sign-container">
+			<div class="text-center">
+				<h3> Contacts Management App </h3>
+				
+				<div align="center"><img src="../public/images/logo.png" class="img-responsive img-circle" width="70px" alt=""/></div>
+				<h4>Create a new account </h4>
+			</div>    
+			
+			<form class="sign-in-form" method="POST" action="#" id="register-form" onsubmit="return false">
+
+				<div class="form-group">
+					<input type='text' class="form-control" placeholder='Fullname' name='fullname' required=""/>
+				</div>
+
+				<div class="form-group">
+					<input type='text' class="form-control" placeholder='Phone number' name='phone' required=""/>
+				</div>
+
+				<div class="form-group">
+					<input type='email' class="form-control" placeholder='Email address' name='email' required=""/>
+				</div>
+
+				<div class="form-group">
+					<input type='password' class="form-control" placeholder='Password' name='password' required=""/>
+				</div>
+                
+                <div class="form-group">
+					<input type='password' class="form-control" placeholder='Confirm Password' name='password_confirmation' required=""/>
+				</div>
+				
+				<button type="button" class="btn btn-info btn-block" id="register-btn" onclick="return ajaxFormRequest('#register-btn','#register-form','/api/register','POST','#register-status','Register','no')">Sign Up</button>
+                
+                <br/>
+				<div align="center" id="register-status" class="text-danger"></div>
+			</form>
+
+			<div>
+				Already have an account? <a href="/" class="text-primary">Sign In Now </a>
+			</div>
+		</div>
+	</div>
+
+	<script src="../public/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="../public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../public/bower_components/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
+	<script src="../public/bower_components/autosize/dist/autosize.min.js"></script>
+	<script src="../public/assets/js/bootstrap-submenu/js/bootstrap-submenu.js"></script>
+	<script src="../public/assets/js/bootstrap-hover-dropdown.js"></script>
+	<script src="../public/bower_components/summernote/dist/summernote.js"></script>
+	<script src="../public/assets/js/horizontal-timeline/js/jquery.mobile.custom.min.js"></script>
+	<script src="../public/assets/js/horizontal-timeline/js/main.js"></script>
+
+	<script src="../public/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="../public/bower_components/datatables-tabletools/js/dataTables.tableTools.js"></script>
+	<script src="../public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="../public/bower_components/datatables-colvis/js/dataTables.colVis.js"></script>
+	<script src="../public/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+	<script src="../public/bower_components/datatables-scroller/js/dataTables.scroller.js"></script>
+	<script src="../public/assets/js/init-datatables.js"></script>
+	<script src="../public/dist/js/main.js"></script>
+
+  </body>
+</html>

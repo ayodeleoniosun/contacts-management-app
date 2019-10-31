@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Contact Management System | Dashboard </title>
+	<meta charset="utf-8" />
+    <link rel="shortcut icon" href="../public/images/logo.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<link rel="stylesheet" href="../public/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../public/bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../public/bower_components/simple-line-icons/css/simple-line-icons.css">
+	<link rel="stylesheet" href="../public/bower_components/weather-icons/css/weather-icons.min.css">
+	<link rel="stylesheet" href="../public/bower_components/themify-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="../public/bower_components/jquery.steps/demo/css/jquery.steps.css">
+	<link rel="stylesheet" href="../public/dist/css/main.css">
+	<link rel="stylesheet" href="../public/assets/js/horizontal-timeline/css/style.css">
+	<link href="../public/assets/js/bootstrap-submenu/css/bootstrap-submenu.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables/media/css/jquery.dataTables.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables-tabletools/css/dataTables.tableTools.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables-colvis/css/dataTables.colVis.css" rel="stylesheet">
+	<link href="../public/bower_components/datatables-responsive/css/responsive.dataTables.scss" rel="stylesheet">
+	<link href="../public/bower_components/datatables-scroller/css/scroller.dataTables.scss" rel="stylesheet">
+	<link rel="stylesheet" href="../public/bower_components/summernote/dist/summernote.css">
+	<link rel="stylesheet" href="../public/assets/css/custom.css">
+	<script src="../public/assets/js/modernizr-custom.js"></script>
+	<script src="../public/js/jquery.min.js"></script>
+	<script src="../public/js/ajax.js"></script>
+  </head>
+  <body>
+	
+	<% include nav.ejs %>
+
+	<div class="ui-content-body">
+		
+		<div class="ui-container">
+	
+				<div class="col-md-12">
+					
+					<h3>Welcome, <%= capitalizeWord(user.fullname)%></h3> 
+					
+					<button data-toggle="modal" data-target="#updateProfileModal" class="btn btn-sm btn-info pull-right"><i class="fa fa-user-circle"></i> Update Your Profile </button>
+					<br/><br/>
+
+					<h4>All Contacts <span class="badge badge-info" style="font-size:20px"> <%= contacts.length %> </span></h4> 
+					
+					<% if(contacts.length == 0) { %>
+						<div class="alert alert-danger"> No contact yet </div>
+					<% } else { %>
+						<div class="directory-info-row">
+							<div class="row">
+							
+								<% contacts.forEach(function (contact) { %>
+
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="job-listings-featured">
+											<div class="row">
+												<div class="col-lg-12 col-md-12 col-xs-12">
+													<div class="job-company-logo">
+														<img src="../public/images/logo.png" alt="" style='max-width:50px' class="img-responsive img-circle"/>
+													</div>
+													<div class="job-details">
+														<a href="#" style="font-size:18px"> <%= contact.name %></a>
+														<br/><p></p>
+														
+														<div class="tags">
+															<a href="tel:<%= contact.phone %>" style="font-size:13px"><i class="fa fa-phone"></i> <%= contact.phone %> </a> &nbsp; &nbsp;
+									
+															<a href="mailto:<%= contact.email %>" style="font-size:13px"><i class="fa fa-envelope"></i> <%= contact.email %></a> &nbsp; &nbsp;
+									
+														</div>
+													</div>
+												</div>
+											</div>
+											<br/>
+										</div>
+									</div>
+										
+								<% }); %>
+
+							</div>
+						</div>
+					<% } %> 
+					<br/><br/>
+
+					<div align="center"> 
+						<a href="/contacts" class="btn btn-md btn-info"> All contacts <i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+	<script src="../public/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="../public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../public/bower_components/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
+	<script src="../public/bower_components/autosize/dist/autosize.min.js"></script>
+	<script src="../public/assets/js/bootstrap-submenu/js/bootstrap-submenu.js"></script>
+	<script src="../public/assets/js/bootstrap-hover-dropdown.js"></script>
+	<script src="../public/bower_components/summernote/dist/summernote.js"></script>
+	<script src="../public/assets/js/horizontal-timeline/js/jquery.mobile.custom.min.js"></script>
+	<script src="../public/assets/js/horizontal-timeline/js/main.js"></script>
+
+	<script src="../public/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="../public/bower_components/datatables-tabletools/js/dataTables.tableTools.js"></script>
+	<script src="../public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="../public/bower_components/datatables-colvis/js/dataTables.colVis.js"></script>
+	<script src="../public/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+	<script src="../public/bower_components/datatables-scroller/js/dataTables.scroller.js"></script>
+	<script src="../public/assets/js/init-datatables.js"></script>
+	<script src="../public/dist/js/main.js"></script>
+
+  </body>
+</html>
