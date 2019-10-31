@@ -4,8 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const app = express();
-const server = require('http').Server(app);
-const port = 4000;
+const port = process.env.PORT || 3000;
 
 const ContactController = require('./controllers/ContactController');
 const UserController = require('./controllers/UserController');
@@ -25,7 +24,7 @@ app.set('view engine', 'ejs');
 ContactController(app);
 UserController(app);
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log('server is running on port', port);
 });
   
