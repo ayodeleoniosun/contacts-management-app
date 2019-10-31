@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Contact management app",
   "main": "app.js",
-  "engines": { 
-    "node": "10.16.3" 
- },
+  "engines": {
+    "node": "10.16.3"
+  },
   "dependencies": {
-    "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
