@@ -1,7 +1,7 @@
 const Users = require('../models/Users.js');
 const Func = require('../libs/functions.js');
 const Settings = require('../config/settings.js');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const auth = require('../libs/auth.js');
@@ -166,11 +166,13 @@ module.exports = function(app) {
         
             else {
                 
+                let salt = bcrypt.genSaltSync(10);
+                
                 let data = {
                     fullname: Func.trimString(fullname), 
                     email: Func.trimString(email.toLowerCase()), 
                     phone: Func.trimString(phone),
-                    password: bcrypt.hashSync(password,10),
+                    password: bcrypt.hashSync(password,salt),
                     created_at: created_at,
                     updated_at: created_at
                 }
